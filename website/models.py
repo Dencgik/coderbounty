@@ -154,9 +154,16 @@ class Bounty(models.Model):
 
 
 class UserProfile(models.Model):
+    CHOICE_PAYMANT_SERVICE = (
+        ('wepay', u'WePay'),
+    )
     user = models.OneToOneField(User, related_name="userprofile")
     balance = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    payment_service = models.CharField(max_length=255, null=True, blank=True)
+    first_name = models.CharField("First Name", max_length=50, null=True, blank=True)
+    last_name = models.CharField("Last Name", max_length=50, null=True, blank=True)
+    email = models.EmailField("Email", null=True, blank=True)
+    github_link = models.CharField("GitHub account", max_length=100, null=True, blank=True, help_text="https://github.com/seanauriti/")
+    payment_service = models.CharField(max_length=255, null=True, blank=True, choices=CHOICE_PAYMANT_SERVICE)
     payment_service_email = models.EmailField(max_length=255, null=True, blank=True, default='')
 
     @property

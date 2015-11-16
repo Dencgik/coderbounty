@@ -7,4 +7,8 @@ register = template.Library()
 
 @register.simple_tag
 def bounty_total():
-    return "{:,.0f}".format(UserProfile.objects.aggregate(Sum('balance'))['balance__sum'])
+	try:
+		return "{:,.0f}".format(UserProfile.objects.aggregate(Sum('balance'))['balance__sum'])
+	except ValueError, e:
+		return 0
+    

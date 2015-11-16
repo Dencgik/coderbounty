@@ -15,6 +15,7 @@ class BountyCreateForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+	
     class Meta:
         model = UserProfile
         exclude = ('user', 'balance')
